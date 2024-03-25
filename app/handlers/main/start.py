@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Final
+from typing import Any, Final
 
 from aiogram import Router
 from aiogram.filters import CommandStart
@@ -9,17 +9,13 @@ from aiogram.types import Message
 from aiogram_i18n import I18nContext
 
 from services.database import DBUser
+from app.keyboards.reply_kb.user_rkb import main_keyboard
 
 
 router: Final[Router] = Router(name=__name__)
 
 
-# @router.message(CommandStart())
-# async def start_command(message: Message) -> None:
-#     await message.delete()
-#     await message.answer(text=f'Привіт {message.from_user.full_name}.')
-
-
 @router.message(CommandStart())
 async def start_command(message: Message, i18n: I18nContext, user: DBUser) -> TelegramMethod[Any]:
-    return message.answer(text=i18n.messages.start(name=user.name))
+    return message.answer(text=i18n.messages.start(name=user.name),
+                          reply_markup=main_keyboard(i18n))

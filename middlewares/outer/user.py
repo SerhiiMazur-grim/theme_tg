@@ -28,11 +28,12 @@ class UserMiddleware(BaseMiddleware):
 
         if event.message:
             split_text = event.message.text.split() if event.message.text else ""
+            # if split_text[0] != '/start':
+            #     return await handler(event, data)
                         
             if (
                 len(split_text) > 1 
                 and split_text[0] == "/start"
-                and not split_text[1].startswith("val_")
             ):
                 referal = split_text[1]
 

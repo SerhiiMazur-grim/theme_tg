@@ -27,7 +27,7 @@ from config.settings import Settings
 
 def _setup_outer_middlewares(dispatcher: Dispatcher, settings: Settings) -> None:
     pool = dispatcher["session_pool"] = create_pool(
-        dsn=settings.build_postgres_dsn(), enable_logging=settings.sqlalchemy_logging
+        dsn=settings.build_sqlite_dsn(), enable_logging=settings.sqlalchemy_logging
     )
     i18n_middleware = dispatcher["i18n_middleware"] = I18nMiddleware(
         core=FluentRuntimeCore(
