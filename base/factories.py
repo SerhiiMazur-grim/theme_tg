@@ -20,7 +20,7 @@ from middlewares import (
     UserMiddleware,
 )
 from services.database import create_pool
-from app.handlers import main
+from app.handlers import main, user, admin
 from utils import msgspec_json as mjson
 from config.settings import Settings
 
@@ -75,7 +75,11 @@ def create_dispatcher(settings: Settings) -> Dispatcher:
         settings=settings,
     )
     
-    dispatcher.include_routers(main.router)
+    dispatcher.include_routers(
+        main.router,
+        admin.router,
+        user.router
+    )
     # dispatcher.include_routers(admin.router, main.router, extra.router)
     
     _setup_outer_middlewares(dispatcher=dispatcher, settings=settings)
