@@ -6,7 +6,7 @@ from aiogram import Bot, Dispatcher
 from aiogram.client.session.aiohttp import AiohttpSession
 from aiogram.enums import ParseMode
 from aiogram.fsm.storage.redis import RedisStorage
-from aiogram.fsm.storage.memory import MemoryStorage, SimpleEventIsolation
+from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.utils.callback_answer import CallbackAnswerMiddleware
 from aiogram_i18n import I18nMiddleware
 from aiogram_i18n.cores import FluentRuntimeCore
