@@ -11,6 +11,9 @@ class Settings(BaseSettings):
     sqlalchemy_logging: bool
     drop_pending_updates: bool
     
+    api_id: SecretStr
+    api_hash: SecretStr
+    
     admin_chat_id: int
     
     postgres_host: str

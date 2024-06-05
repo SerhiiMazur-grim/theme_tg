@@ -2,9 +2,11 @@ from aiogram.fsm.state import State, StatesGroup
 
 
 class CreateThemeState(StatesGroup):
+    chat_id = State()
+    photo_message = State()
     step = State()
-    end_step = State()
     color_list = State()
+    wallpaper_id = State()
     wallpaper_path = State()
     device = State()
     bg_color = State()

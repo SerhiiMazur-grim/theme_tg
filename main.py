@@ -16,6 +16,5 @@ def main():
         return run_webhook(dispatcher=dp, bot=bot, settings=settings)
     return run_polling(dispatcher=dp, bot=bot)
 
-
 if __name__ == '__main__':
     main()
