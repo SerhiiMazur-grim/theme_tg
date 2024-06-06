@@ -1,13 +1,15 @@
 import os
 
 from utils.wallpaper import CreateWallpaper
+from utils.theme_preview import CreateIphonePreview
 from .color_name import ColorName
 from .color_brightness import ColorBrightness
 
 
 class CreateIphoneTheme(ColorName,
                         ColorBrightness,
-                        CreateWallpaper):
+                        CreateWallpaper,
+                        CreateIphonePreview):
     
     async def _status_bar_gamma(self, hex_color, threshold = 128):
         hex_color = hex_color.lstrip('#')
@@ -36,9 +38,9 @@ class CreateIphoneTheme(ColorName,
         color_name = color_name.capitalize()
         
 
-        # hex_bg = bg
-        # hex_primary_txt = primary_txt
-        # hex_not_primary_txt = not_primary_txt
+        hex_bg = bg
+        hex_primary_txt = primary_txt
+        hex_not_primary_txt = not_primary_txt
         
 
         hex_darker_bg = await self._adjust_color_brightness(bg)
@@ -455,10 +457,11 @@ class CreateIphoneTheme(ColorName,
             for row in ios_data:
                 f.write(str(row) + '\n')
         
-        # preview_bg = await adjust_color_brightness(hex_not_primary_txt, 0.5)
-        # preview = await create_ios_preview(
-        #     chat_id, image_path, preview_bg, hex_bg, hex_primary_txt, hex_not_primary_txt, hex_darker_bg
-        # )
+        preview_bg = await self._adjust_color_brightness(hex_not_primary_txt, 0.5)
+        preview = await self.create_ios_preview(
+            bot_name, chat_id, image_path, preview_bg, hex_bg,
+            hex_primary_txt, hex_not_primary_txt, hex_darker_bg
+        )
 
-        # return theme, preview
-        return theme
+        return theme, preview
+        # return theme

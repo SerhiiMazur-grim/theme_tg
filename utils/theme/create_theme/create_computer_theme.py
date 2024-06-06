@@ -1,11 +1,14 @@
 import os
 import zipfile
 
+from utils.theme_preview import CreateComputerPreview
 from .color_name import ColorName
 from .color_brightness import ColorBrightness
 
 
-class CreateComputerTheme(ColorName, ColorBrightness):
+class CreateComputerTheme(ColorName,
+                          ColorBrightness,
+                          CreateComputerPreview):
     
     async def _create_zip_archive(self, image_file, text_file, output_filename):
         with zipfile.ZipFile(output_filename, 'w') as zipf:
@@ -519,11 +522,11 @@ class CreateComputerTheme(ColorName, ColorBrightness):
 
         await self._create_zip_archive(image_path, txt_file_path, zip_name)
 
-        # preview_bg = await self.adjust_color_brightness(secondary_text_color, 0.5)
-        # preview = await create_pc_preview(
-        #     chat_id, image_path, preview_bg, background_color, background_color2,
-        #     secondary_text_color, primary_text_color, background_alfa
-        # )
+        preview_bg = await self._adjust_color_brightness(secondary_text_color, 0.5)
+        preview = await self.create_pc_preview(
+            bot_name, chat_id, image_path, preview_bg, background_color,
+            background_color2, secondary_text_color, primary_text_color, background_alfa
+        )
         
-        # return zip_name, preview
-        return zip_name
+        return zip_name, preview
+        # return zip_name

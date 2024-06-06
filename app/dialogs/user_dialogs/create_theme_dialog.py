@@ -98,19 +98,19 @@ class CreateThemeDialog(CreateAndroidTheme,
         wait_message = await self.call.message.answer(self.i18n.messages.wait_creating_theme())
         bot_data: User = await self.bot.get_me()
         bot_username = bot_data.username
-        photo_message: Message = data.get('photo_message')
+        # photo_message: Message = data.get('photo_message')
         device = data.get('device')
         chat_id = data.get('chat_id')
         
         try:
             if device == 'android':
-                theme_path = await self.create_android_theme(data, bot_username)
+                theme_path, preview_path = await self.create_android_theme(data, bot_username)
             
             elif device == 'iphone':
-                theme_path = await self.create_iphone_theme(data, bot_username)
+                theme_path, preview_path = await self.create_iphone_theme(data, bot_username)
             
             elif device == 'computer':
-                theme_path = await self.create_pc_theme(data, bot_username)
+                theme_path, preview_path = await self.create_pc_theme(data, bot_username)
                 
         except Exception as e:
             loggers.event.error(f'An error occurred while creating theme \n ERROR: {e}')
@@ -119,9 +119,10 @@ class CreateThemeDialog(CreateAndroidTheme,
             return self.call.message.answer(self.i18n.messages.error_creating_theme())
         
         await wait_message.delete()
-        await photo_message.reply_document(document=FSInputFile(path=theme_path),
-                                           caption=self.i18n.messages.your_theme_created(bot_username=bot_username),
-                                           reply_markup=main_keyboard(self.i18n))
+        await self.call.message.answer_photo(photo=FSInputFile(path=preview_path))
+        await self.call.message.answer_document(document=FSInputFile(path=theme_path),
+                                   caption=self.i18n.messages.your_theme_created(bot_username=bot_username),
+                                   reply_markup=main_keyboard(self.i18n))
         await self._clear_folder_and_state(chat_id)
     
     
