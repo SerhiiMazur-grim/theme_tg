@@ -9,6 +9,7 @@ from aiogram.fsm.context import FSMContext
 
 from aiogram_i18n import I18nContext, LazyProxy
 
+from app.keyboards.reply_kb.user_rkb import back_to_main_keyboard
 from app.state.user_state import CreateThemeState
 from app.dialogs.user_dialogs import CreateThemeDialog
 from app.dialogs.windows import CREATE_THEME_WINDOWS as windows
@@ -19,11 +20,13 @@ router: Final[Router] = Router(name=__name__)
 
 
 @router.message(F.text == LazyProxy('button-create_theme'))
-async def create_theme_message(message: Message, i18n: I18nContext) -> TelegramMethod:
-    return message.answer(text=i18n.messages.create_theme_message())
+async def create_theme_message(message: Message, i18n: I18nContext, state: FSMContext) -> TelegramMethod:
+    await state.set_state(CreateThemeState.wallpaper_id)
+    return message.answer(text=i18n.messages.create_theme_message(),
+                          reply_markup=back_to_main_keyboard(i18n))
 
 
-@router.message(F.photo | F.document)
+@router.message(CreateThemeState.wallpaper_id)
 async def get_wallpaper(message: Message, bot: Bot, i18n: I18nContext, state: FSMContext):
     photo_id = is_photo_id(message)
     if not photo_id:

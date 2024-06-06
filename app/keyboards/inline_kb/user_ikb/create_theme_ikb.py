@@ -4,7 +4,8 @@ from aiogram_i18n import I18nContext
 
 from config.callback_data import (
     CANCEL_CREATE_THEME,
-    THEME_STEP_BACK
+    THEME_STEP_BACK,
+    AUTO_CREATE_THEME
 )
 from utils import get_text
 
@@ -35,7 +36,7 @@ def choose_color_ikb(colors: list, i18n: I18nContext) -> InlineKeyboardMarkup:
     ikb.button(text='5', callback_data=colors[4])
     ikb.button(text='White', callback_data='#ffffff')
     ikb.button(text='Black', callback_data='#000000')
-    ikb.button(text='Auto', callback_data='auto')
+    ikb.button(text='Auto', callback_data=AUTO_CREATE_THEME)
     ikb.button(text=back, callback_data=THEME_STEP_BACK)
     ikb.button(text=cancel, callback_data=CANCEL_CREATE_THEME)
     ikb.adjust(5, 3, 2)
