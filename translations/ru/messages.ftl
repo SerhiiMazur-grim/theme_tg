@@ -15,6 +15,10 @@ messages-error_same_color = ❗️ Цвет фона и цвет текста н
 messages-abort_create_theme = ❌Создание темы отменено
 messages-your_theme_created = Тема создана в <a href="https://t.me/{ $bot_username }?start=from_theme">{$bot_username }</a>
 messages-main_menu = ⌨️Главное меню
+messages-provide_category = Отправьте мне три локализованных названия категории разделенных энтером (каждая локализация с новой строки)
+messages-not_all_localization_options = Вы не предоставили все варианты локализации
+messages-category_add_to_db = Категория добавлена ​​в базу данных
+messages-is_not_localization_options = Это не локализованное название категории, предоставьте локализованные названия категории
 
 messages-something_went_wrong = Упс! Что-то пошло не так...
 

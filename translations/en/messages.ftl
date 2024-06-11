@@ -15,6 +15,10 @@ messages-error_same_color = ❗️ The background color and text color should no
 messages-abort_create_theme = ❌Theme creation canceled
 messages-your_theme_created = Theme created at <a href="https://t.me/{ $bot_username }?start=from_theme">{ $bot_username }</a>
 messages-main_menu = ⌨️Main menu
+messages-provide_category = Send me three localized category names separated by enter (each localization on a new line)
+messages-not_all_localization_options = You have not provided all localization options
+messages-category_add_to_db = The category has been added to the database
+messages-is_not_localization_options = This is not a localized category name, please provide localized category names
 
 messages-something_went_wrong = Oops! Something went wrong...
 

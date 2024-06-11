@@ -15,8 +15,11 @@ async def set_commands(bot: Bot, settings: Settings) -> None:
     ]
     admin_commands = [
         BotCommand(command='image_id',
-                   description='–  Get the image ID')
+                   description='–  Get the image ID'),
+        BotCommand(command='add_theme_category',
+                   description='-  Add category for theme catalog')
     ]
+    
     admin_commands = all_private_chats_commands + admin_commands
     
     await bot.set_my_commands(commands=all_private_chats_commands,

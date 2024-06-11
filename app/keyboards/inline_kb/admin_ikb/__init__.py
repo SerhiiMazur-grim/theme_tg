@@ -1,6 +1,6 @@
-from .commands_ikb import abort_get_image_for_id_ikb
+from .commands_ikb import abort_command_ikb
 
 __all__ = [
-    'abort_get_image_for_id_ikb',
+    'abort_command_ikb',
     
 ]

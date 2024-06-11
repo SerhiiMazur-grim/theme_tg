@@ -11,7 +11,7 @@ from aiogram_i18n import I18nContext
 
 from services.database import DBUser
 from app.state.admin_state import GetImageIdState
-from app.keyboards.inline_kb.admin_ikb import abort_get_image_for_id_ikb
+from app.keyboards.inline_kb.admin_ikb import abort_command_ikb
 
 
 router: Final[Router] = Router(name=__name__)
@@ -20,10 +20,11 @@ router: Final[Router] = Router(name=__name__)
 @router.message(Command('image_id'))
 async def get_image_id_command(message: Message, i18n: I18nContext,
                                user: DBUser, state: FSMContext) -> TelegramMethod[Any]:
+    await message.delete()
     await state.set_state(GetImageIdState.image)
     language: str = user.locale
     return message.answer(text=i18n.messages.send_image_to_get_id(),
-                          reply_markup=abort_get_image_for_id_ikb(i18n, language))
+                          reply_markup=abort_command_ikb(i18n, language))
 
 
 @router.message(GetImageIdState.image)
@@ -34,12 +35,3 @@ async def get_image(message: Message, i18n: I18nContext, state: FSMContext) -> T
         return message.answer(text=image_id)
     else:
         return message.answer(text=i18n.messages.is_not_image_for_get_id())
-
-
-@router.callback_query(F.data == 'abort_get_image_for_id')
-async def abort_get_image_id(call: CallbackQuery, i18n: I18nContext, state: FSMContext) -> None:
-    await call.message.delete()
-    current_state = await state.get_state()
-    
-    if current_state:
-        await state.clear()

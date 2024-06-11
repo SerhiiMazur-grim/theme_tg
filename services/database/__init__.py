@@ -1,5 +1,13 @@
 from .create_pool import create_pool
-from .models import Base, DBUser
-from .repositories import Repository, UserRepository
+from .models import Base, DBUser, ThemeCategory
+from .repositories import Repository, UserRepository, ThemeCategoryRepository
 
-__all__ = ["Base", "DBUser", "Repository", "UserRepository", "create_pool"]
+__all__ = [
+    "create_pool",
+    "Base",
+    "DBUser",
+    "ThemeCategory",
+    "Repository",
+    "UserRepository",
+    "ThemeCategoryRepository",
+]
