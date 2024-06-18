@@ -24,6 +24,7 @@ async def add_theme_category_command(message: Message, i18n: I18nContext,
                                state: FSMContext) -> TelegramMethod[Any]:
     await message.delete()
     await state.set_state(AddThemeCategoryState.categories)
+    
     return message.answer(text=i18n.messages.provide_category(),
                           reply_markup=abort_command_ikb(i18n))
 
@@ -39,6 +40,7 @@ async def get_categories(message: Message, i18n: I18nContext,
         await repository.theme_category.create(*categories)
         
         return message.answer(text=i18n.messages.category_add_to_db())
+    
     else:
         return message.answer(text=i18n.messages.is_not_localization_options())
 

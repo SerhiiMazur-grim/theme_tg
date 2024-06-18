@@ -1,7 +1,7 @@
 import os
 
 from aiogram import Bot, loggers
-from aiogram.types import CallbackQuery, FSInputFile, Message
+from aiogram.types import CallbackQuery, FSInputFile
 from aiogram.types.user import User
 from aiogram.fsm.context import FSMContext
 from aiogram_i18n.context import I18nContext
@@ -98,7 +98,6 @@ class CreateThemeDialog(CreateAndroidTheme,
         wait_message = await self.call.message.answer(self.i18n.messages.wait_creating_theme())
         bot_data: User = await self.bot.get_me()
         bot_username = bot_data.username
-        # photo_message: Message = data.get('photo_message')
         device = data.get('device')
         chat_id = data.get('chat_id')
         
@@ -123,6 +122,7 @@ class CreateThemeDialog(CreateAndroidTheme,
         await self.call.message.answer_document(document=FSInputFile(path=theme_path),
                                    caption=self.i18n.messages.your_theme_created(bot_username=bot_username),
                                    reply_markup=main_keyboard(self.i18n))
+        
         await self._clear_folder_and_state(chat_id)
     
     
