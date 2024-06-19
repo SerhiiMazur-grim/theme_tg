@@ -10,6 +10,7 @@ class Settings(BaseSettings):
     use_redis: bool
     sqlalchemy_logging: bool
     drop_pending_updates: bool
+    logging_info: bool
     
     api_id: SecretStr
     api_hash: SecretStr

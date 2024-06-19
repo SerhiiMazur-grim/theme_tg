@@ -1,4 +1,5 @@
-messages-start = Hello, { $name }!
+messages-start = 👋Hello, { $name }! 
+    You can change the bot's language using the /language command if you need it 😊
 messages-choose_language = Choose language from the list:
 messages-language_is_set = Language changed successfully.
 messages-create_theme_message = To create your own theme, send the bot a picture and he will create a theme for you from it 😉
