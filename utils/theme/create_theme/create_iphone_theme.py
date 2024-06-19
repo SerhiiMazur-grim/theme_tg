@@ -1,18 +1,18 @@
 import os
 
 from utils.wallpaper import CreateWallpaper
-# from utils.theme_preview import CreateIphonePreview
+from utils.theme_preview import CreateIphonePreview
 from .color_name import ColorName
 from .color_brightness import ColorBrightness
 
 
-# class CreateIphoneTheme(ColorName,
-#                         ColorBrightness,
-#                         CreateWallpaper,
-#                         CreateIphonePreview):
 class CreateIphoneTheme(ColorName,
                         ColorBrightness,
-                        CreateWallpaper):
+                        CreateWallpaper,
+                        CreateIphonePreview):
+# class CreateIphoneTheme(ColorName,
+#                         ColorBrightness,
+#                         CreateWallpaper):
     
     async def _status_bar_gamma(self, hex_color, threshold = 128):
         hex_color = hex_color.lstrip('#')

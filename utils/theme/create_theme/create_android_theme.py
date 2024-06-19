@@ -1,15 +1,15 @@
 import os
 
-# from utils.theme_preview import CreateAndroidPreview
+from utils.theme_preview import CreateAndroidPreview
 from .color_name import ColorName
 from .color_brightness import ColorBrightness
 
 
-# class CreateAndroidTheme(ColorName,
-#                          ColorBrightness,
-#                          CreateAndroidPreview):
 class CreateAndroidTheme(ColorName,
-                         ColorBrightness):
+                         ColorBrightness,
+                         CreateAndroidPreview):
+# class CreateAndroidTheme(ColorName,
+#                          ColorBrightness):
     
     async def color_to_int32(self, color):
         if len(color) == 7:
@@ -644,12 +644,12 @@ class CreateAndroidTheme(ColorName,
             f.write(binar_imag)
             f.write('\nWPE'.encode('utf-8'))
         
-        # preview_bg = await self._adjust_color_brightness(hex_primary_txt, 0.5)
-        # preview = await self.create_android_preview(
-        #     bot_name, chat_id, image_path, alfa, bg_hex, hex_primary_txt,
-        #     hex_secondary_txt, chat_in, avatar_gradient1, avatar_gradient2, preview_bg
-        # )
+        preview_bg = await self._adjust_color_brightness(hex_primary_txt, 0.5)
+        preview = await self.create_android_preview(
+            bot_name, chat_id, image_path, alfa, bg_hex, hex_primary_txt,
+            hex_secondary_txt, chat_in, avatar_gradient1, avatar_gradient2, preview_bg
+        )
 
-        # return theme, preview
-        return theme
+        return theme, preview
+        # return theme
     
