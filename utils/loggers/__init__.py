@@ -20,8 +20,13 @@ def setup_logger(level: int = logging.INFO) -> None:
         logging.getLogger(name).setLevel(logging.WARNING)
 
     logging.basicConfig(
-        filename='theme-bot.log',
         format="%(asctime)s %(levelname)s | %(name)s: %(message)s",
         datefmt="[%H:%M:%S]",
         level=level,
     )
+    # logging.basicConfig(
+    #     filename='theme-bot.log',
+    #     format="%(asctime)s %(levelname)s | %(name)s: %(message)s",
+    #     datefmt="[%H:%M:%S]",
+    #     level=level,
+    # )
