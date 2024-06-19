@@ -1,7 +1,7 @@
 """Update theme category table
 
 Revision ID: c9d91f61d773
-Revises: b49c93b6e7a9
+Revises: d276dabcfb37
 Create Date: 2024-06-11 16:37:43.825954
 
 """
@@ -14,7 +14,7 @@ import sqlalchemy as sa
 
 # revision identifiers, used by Alembic.
 revision: str = "c9d91f61d773"
-down_revision: Union[str, None] = "b49c93b6e7a9"
+down_revision: Union[str, None] = "d276dabcfb37"
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
