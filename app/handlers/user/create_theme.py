@@ -32,9 +32,12 @@ async def get_wallpaper(message: Message, bot: Bot, i18n: I18nContext, state: FS
     if not photo_id:
         return message.reply(i18n.messages.is_not_image_for_get_id())
     
+    wait_message = await message.answer(text=i18n.messages.image_processing())
     step, image_path = await wallp_answer_data(message, photo_id, bot, state)
     
     window = windows.get(step)
+    await wait_message.delete()
+    
     return message.answer_photo(
         photo=FSInputFile(path=image_path),
         caption=window.caption(i18n),

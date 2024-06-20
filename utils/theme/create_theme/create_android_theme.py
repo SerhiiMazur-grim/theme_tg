@@ -8,6 +8,8 @@ from .color_brightness import ColorBrightness
 class CreateAndroidTheme(ColorName,
                          ColorBrightness,
                          CreateAndroidPreview):
+# class CreateAndroidTheme(ColorName,
+#                          ColorBrightness):
     
     async def color_to_int32(self, color):
         if len(color) == 7:
@@ -649,4 +651,5 @@ class CreateAndroidTheme(ColorName,
         )
 
         return theme, preview
+        # return theme
     

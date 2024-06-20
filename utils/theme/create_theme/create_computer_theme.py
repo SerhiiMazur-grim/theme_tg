@@ -9,6 +9,8 @@ from .color_brightness import ColorBrightness
 class CreateComputerTheme(ColorName,
                           ColorBrightness,
                           CreateComputerPreview):
+# class CreateComputerTheme(ColorName,
+#                           ColorBrightness):
     
     async def _create_zip_archive(self, image_file, text_file, output_filename):
         with zipfile.ZipFile(output_filename, 'w') as zipf:
