@@ -17,7 +17,7 @@ async def set_commands(bot: Bot, settings: Settings) -> None:
         BotCommand(command='image_id',
                    description='–  Get the image ID'),
         BotCommand(command='add_theme_category',
-                   description='-  Add category for theme catalog')
+                   description='–  Add category for theme catalog')
     ]
     
     admin_commands = all_private_chats_commands + admin_commands
