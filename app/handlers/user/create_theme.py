@@ -13,13 +13,14 @@ from app.keyboards.reply_kb.user_rkb import back_to_main_keyboard
 from app.state.user_state import CreateThemeState
 from app.dialogs.user_dialogs import CreateThemeDialog
 from app.dialogs.windows import CREATE_THEME_WINDOWS as windows
+from app.filters import PrivateChatFilter
 from utils.theme import is_photo_id, wallp_answer_data
 
 
 router: Final[Router] = Router(name=__name__)
 
 
-@router.message(F.text == LazyProxy('button-create_theme'))
+@router.message(PrivateChatFilter(), F.text == LazyProxy('button-create_theme'))
 async def create_theme_message(message: Message, i18n: I18nContext, state: FSMContext) -> TelegramMethod:
     await state.set_state(CreateThemeState.wallpaper_id)
     return message.answer(text=i18n.messages.create_theme_message(),

@@ -11,13 +11,14 @@ from aiogram_i18n import I18nContext
 
 from services.database import DBUser
 from app.keyboards.reply_kb.user_rkb import main_keyboard
+from app.filters import PrivateChatFilter
 from utils import clear_state
 
 
 router: Final[Router] = Router(name=__name__)
 
 
-@router.message(CommandStart())
+@router.message(PrivateChatFilter(), CommandStart())
 async def start_command(message: Message, i18n: I18nContext, state: FSMContext, user: DBUser) -> TelegramMethod[Any]:
     await clear_state(state)
     

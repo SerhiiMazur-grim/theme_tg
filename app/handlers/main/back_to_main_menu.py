@@ -9,13 +9,14 @@ from aiogram.fsm.context import FSMContext
 from aiogram_i18n import I18nContext, LazyProxy
 
 from app.keyboards.reply_kb.user_rkb import main_keyboard
+from app.filters import PrivateChatFilter
 from utils import clear_state
 
 
 router: Final[Router] = Router(name=__name__)
 
 
-@router.message(F.text == LazyProxy('button-back_to_main_rkb'))
+@router.message(PrivateChatFilter(), F.text == LazyProxy('button-back_to_main_rkb'))
 async def back_to_main_menu_handler(message: Message, i18n: I18nContext, state: FSMContext) -> TelegramMethod:
     await clear_state(state)
     return message.answer(text=i18n.messages.main_menu(),

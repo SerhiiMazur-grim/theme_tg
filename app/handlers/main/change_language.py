@@ -12,13 +12,14 @@ from aiogram_i18n import I18nContext
 from services.database import DBUser, Repository
 from app.keyboards.inline_kb.user_ikb import choose_lang_ikb
 from app.keyboards.reply_kb.user_rkb import main_keyboard
+from app.filters import PrivateChatFilter
 from utils import clear_state
 
 
 router: Final[Router] = Router(name=__name__)
 
 
-@router.message(Command('language'))
+@router.message(PrivateChatFilter(), Command('language'))
 async def init_change_lang(message: Message, state: FSMContext, i18n: I18nContext) -> TelegramMethod[Any]:
     await clear_state(state)
     return message.answer(text=i18n.messages.choose_language(),
