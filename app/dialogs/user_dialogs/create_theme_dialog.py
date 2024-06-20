@@ -110,14 +110,6 @@ class CreateThemeDialog(CreateAndroidTheme,
             
             elif device == 'computer':
                 theme_path, preview_path = await self.create_pc_theme(data, bot_username)
-            # if device == 'android':
-            #     theme_path = await self.create_android_theme(data, bot_username)
-            
-            # elif device == 'iphone':
-            #     theme_path = await self.create_iphone_theme(data, bot_username)
-            
-            # elif device == 'computer':
-            #     theme_path = await self.create_pc_theme(data, bot_username)
                 
         except Exception as e:
             loggers.event.error(f'An error occurred while creating theme \n ERROR: {e}')

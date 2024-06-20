@@ -11,6 +11,7 @@ class Settings(BaseSettings):
     sqlalchemy_logging: bool
     drop_pending_updates: bool
     logging_info: bool
+    logs_to_file: None | str
     
     api_id: SecretStr
     api_hash: SecretStr
