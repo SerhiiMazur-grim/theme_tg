@@ -5,7 +5,7 @@ from PIL import Image, ImageDraw, ImageFont
 from config import water_mark_text
 from .hex_to_rgba_convert import HexColorToRgba
 from .crop_wallpaper import CropWallpaper
-from .ios_theme_layers.iphone_loaded_layers import IPHONE_IMAGE_LAYER_LIST
+from .ios_theme_layers.iphone_loaded_layers import get_ios_layers
 
 
 class CreateIphonePreview(HexColorToRgba, CropWallpaper):
@@ -40,7 +40,7 @@ class CreateIphonePreview(HexColorToRgba, CropWallpaper):
 
         layers = []
         wallpaper = await self._crop_wallpaper(photo)
-        images = IPHONE_IMAGE_LAYER_LIST.copy()
+        images = await get_ios_layers()
         
         colors = await self._hex_color_to_rgba([
             preview_bg,

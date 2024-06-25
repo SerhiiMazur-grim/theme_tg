@@ -5,7 +5,7 @@ from PIL import Image, ImageDraw, ImageFont
 from config import water_mark_text
 from .hex_to_rgba_convert import HexColorToRgba
 from .crop_wallpaper import CropWallpaper
-from .pc_theme_layers.computer_loaded_layers import PC_USER_ICON_LIST, PC_IMAGE_LAYER_LIST
+from .pc_theme_layers.computer_loaded_layers import PC_USER_ICON_LIST, get_pc_layers
 
 
 class CreateComputerPreview(HexColorToRgba, CropWallpaper):
@@ -75,7 +75,7 @@ class CreateComputerPreview(HexColorToRgba, CropWallpaper):
 
         layers = []
         wallpaper = await self._crop_computer_wallpaper(photo)
-        images = PC_IMAGE_LAYER_LIST.copy()
+        images = await get_pc_layers()
         
         colors = await self._hex_color_to_rgba([
             img_bg_color,

@@ -5,7 +5,7 @@ from PIL import Image, ImageDraw, ImageFont
 from config import water_mark_text
 from .hex_to_rgba_convert import HexColorToRgba
 from .crop_wallpaper import CropWallpaper
-from .android_theme_layers.android_loaded_layers import ANDROID_USER_ICON_LIST, ANDROID_IMAGE_LAYER_LIST
+from .android_theme_layers.android_loaded_layers import ANDROID_USER_ICON_LIST, get_android_layers
 
 
 class CreateAndroidPreview(HexColorToRgba, CropWallpaper):     
@@ -75,7 +75,7 @@ class CreateAndroidPreview(HexColorToRgba, CropWallpaper):
 
         layers = []
         wallpaper = await self._crop_wallpaper(photo)
-        images = ANDROID_IMAGE_LAYER_LIST.copy()
+        images = await get_android_layers()
         
         colors = await self._hex_color_to_rgba([
             preview_bg,

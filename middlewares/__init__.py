@@ -1,4 +1,4 @@
-from .outer import DBSessionMiddleware, UserManager, UserMiddleware
+from .outer import DBSessionMiddleware, UserManager, UserMiddleware, ForbiddenErrorMiddleware
 from .request import RetryRequestMiddleware
 
 __all__ = [
@@ -6,4 +6,6 @@ __all__ = [
     "UserManager",
     "UserMiddleware",
     "RetryRequestMiddleware",
+    "ForbiddenErrorMiddleware",
+    
 ]
