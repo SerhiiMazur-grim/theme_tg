@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
-
 from aiogram import Bot, Dispatcher
 from aiogram.client.session.aiohttp import AiohttpSession
 from aiogram.enums import ParseMode
@@ -90,14 +88,20 @@ def create_dispatcher(settings: Settings) -> Dispatcher:
     return dispatcher
 
 
+# def create_bot(settings: Settings) -> Bot:
+#     """
+#     :return: Configured ``Bot`` with retry request middleware
+#     """
+#     session: AiohttpSession = AiohttpSession(json_loads=mjson.decode, json_dumps=mjson.encode)
+#     session.middleware(RetryRequestMiddleware())
+#     return Bot(
+#         token=settings.bot_token.get_secret_value(),
+#         parse_mode=ParseMode.HTML,
+#         session=session,
+#     )
+
 def create_bot(settings: Settings) -> Bot:
-    """
-    :return: Configured ``Bot`` with retry request middleware
-    """
-    session: AiohttpSession = AiohttpSession(json_loads=mjson.decode, json_dumps=mjson.encode)
-    session.middleware(RetryRequestMiddleware())
     return Bot(
         token=settings.bot_token.get_secret_value(),
-        parse_mode=ParseMode.HTML,
-        session=session,
+        parse_mode=ParseMode.HTML
     )
